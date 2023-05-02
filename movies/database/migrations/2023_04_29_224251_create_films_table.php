@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamps();
             $table->foreignId('glumac_id');
             $table->foreignId('reziser_id');  
-
+            $table->foreignId('user_id');  
 
                         
             

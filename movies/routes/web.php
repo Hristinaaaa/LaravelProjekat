@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/films',[FilmController::class,'index' ]);
+Route::get('/films/{id}',[FilmController::class,'show' ]);

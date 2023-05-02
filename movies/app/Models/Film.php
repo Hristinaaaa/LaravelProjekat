@@ -10,10 +10,17 @@ class Film extends Model
     use HasFactory;
 
     public function rezisers(){
-        return $this->hasMany(Reziser::class);
+        return $this->belongsTo(Reziser::class,'reziser_id');
     }
 
     public function glumacs(){
-        return $this->hasMany(Glumac::class);
+        return $this->belongsTo(Glumac::class,'glumac_id');
     }
+
+
+        public function users(){
+        return $this->belongsTo(User::class,'user_id');
+    }
+
+
 }
