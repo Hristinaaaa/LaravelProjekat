@@ -37,9 +37,9 @@ class ReziserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Reziser $reziser)
+    public function show($id)
     {
-        $rezisers = Reziser::find($reziser_id);
+        $rezisers = Reziser::find($id);
         if (is_null($rezisers)) {
             return response()->json('Data not found', 404);
         }

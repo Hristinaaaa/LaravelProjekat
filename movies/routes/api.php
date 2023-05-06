@@ -9,6 +9,7 @@ use App\Http\Controllers\GlumacFilmController;
 use App\Http\Controllers\FilmController;
 use App\Http\Controllers\ReziserController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\API\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,20 +30,21 @@ Route::resource('users', UserController::class)->only('index', 'show');
 Route::resource('reziseri', ReziserController::class)->only('index', 'show');
 Route::resource('films', FilmController::class)->only('index', 'show');
 Route::resource('glumci', GlumacController::class)->only('index', 'show');
-Route::get('/glumci/{id}', [GlumacController::class, 'show'])->name('users.show');
+
 
 Route::resource('users.films', UserFilmController::class)->only(['index']);
-Route::resource('glumci.films', GlumacBookController::class)->only(['index']);
-Route::resource('reziseri.films', ReziserBookController::class)->only(['index']);
+Route::resource('glumci.films', GlumacFilmController::class)->only(['index']);
+Route::resource('reziseri.films', ReziserFilmController::class)->only(['index']);
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
+
 Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/profile', function (Request $request) {
         return auth()->user();
     });
 
-    Route::resource('books', BookController::class)->only(['update', 'store', 'destroy']);
+    Route::resource('films', FilmController::class)->only(['update', 'store', 'destroy']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
 });

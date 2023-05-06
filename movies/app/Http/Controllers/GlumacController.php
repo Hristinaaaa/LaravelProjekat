@@ -36,7 +36,7 @@ class GlumacController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Glumac $glumac)
+    public function show($id)
     {
         $glumac = Glumac::find($id);
         if (is_null($glumac)) {
